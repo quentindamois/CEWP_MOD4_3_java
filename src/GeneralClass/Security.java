@@ -1,8 +1,11 @@
 package GeneralClass;
 
 import javax.swing.*;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class Security {
     /**
@@ -106,6 +109,20 @@ public class Security {
             res = safeBooleanInput(question);
         }
         return res;
+    }
+    /**
+     * This is the display tring method.
+     * This static methor take a set of string and return a String containing every entity in the set separated by ", ".
+     * */
+    public static String displayStringSet(HashSet<String> displayedSet) {
+        String StringNameSet = "";
+        for(String firstname : displayedSet) {
+            StringNameSet += firstname + ", ";
+        }
+        System.out.println(StringNameSet);
+        StringBuilder res = new StringBuilder(StringNameSet);
+        System.out.println(StringNameSet);
+        return res.substring(0, res.length() - 2);
     }
     }
 
