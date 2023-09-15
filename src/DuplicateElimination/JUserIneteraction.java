@@ -2,15 +2,16 @@ package DuplicateElimination;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashSet;
-
+import GeneralClass.Security.*;
 public class JUserIneteraction extends JFrame{
     private JPanel panel;
-    private JLabel textResult;
+    /*
     private JLabel textNameAdd;
     private JLabel textNameSearch;
-    private JTextField inputNameAdd;
-    private JTextField inputNameSearch;
+    */
     private JButton buttonNameAdd;
     private JButton buttonNameSearch;
     private HashSet<String> namesSet;
@@ -27,21 +28,24 @@ public class JUserIneteraction extends JFrame{
     }
     public void addContent() {
         this.panel = new JPanel();
-        this.textResult = new JLabel("");
-        this.textNameAdd = new JLabel("Enter a name here to add it to the set of name :");
-        this.textNameSearch = new JLabel("Enter a name here to search it in the set of name :");
-        this.inputNameAdd = new JTextField();
-        this.inputNameSearch = new JTextField();
-        this.buttonNameAdd = new JButton();
-        this.buttonNameSearch = new JButton();
+        this.buttonNameAdd = new JButton("Press to add a name");
+        this.buttonNameSearch = new JButton("Press to search a name");
+        this.namesSet = new HashSet<>();
+        this.buttonNameAdd.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                namesSet.add(GeneralClass.Security.safeNameInput("Enter the name you want to add :"));
+                System.out.println(namesSet);
+            }
+        });
+        this.buttonNameSearch.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                  JOptionPane.showMessageDialog(null,namesSet.contains(GeneralClass.Security.safeNameInput("Enter the name you want to search")) ? "The set contain the inputed name" : "The set does not contain the name");
+            }
+        });
 
-
-
-        this.panel.setLayout(new GridLayout(3, 2));
-        this.panel.add(textNameAdd);
-        this.panel.add(textNameSearch);
-        this.panel.add(inputNameAdd);
-        this.panel.add(inputNameSearch);
+        //this.panel.setLayout(new GridLayout(1, 2));
         this.panel.add(buttonNameAdd);
         this.panel.add(buttonNameSearch);
     }
