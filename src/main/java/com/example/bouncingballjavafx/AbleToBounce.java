@@ -84,6 +84,11 @@ public class AbleToBounce extends Circle {
     public boolean iSBorderColideAll(int windowWidth, int windowHeigth) {
         return this.isBorderColide(windowWidth, windowHeigth, this.getNort()) || this.isBorderColide(windowWidth, windowHeigth, this.getNortWest()) || this.isBorderColide(windowWidth, windowHeigth, this.getWest()) || this.isBorderColide(windowWidth, windowHeigth, this.getSouthWest()) || this.isBorderColide(windowWidth, windowHeigth, this.getSouth()) || this.isBorderColide(windowWidth, windowHeigth, this.getSouthEast()) || this.isBorderColide(windowWidth, windowHeigth, this.getEast()) || this.isBorderColide(windowWidth, windowHeigth, this.getNorthEast());
     }
+    public void BorderColideHandler(int windowWidth, int windowHeigth) {
+        if (this.isBorderColide(windowWidth, windowHeigth, this.getNort()) || this.isBorderColide(windowWidth, windowHeigth, this.getSouth())) this.ySpeed *= -1;
+        if (this.isBorderColide(windowWidth, windowHeigth, this.getWest()) || this.isBorderColide(windowWidth, windowHeigth, this.getEast())) this.xSpeed *= -1;
+    }
+
     public String toString() {
         return "Center : (" + this.getCenterX() + ", " + this.getCenterY() + ")\nRadius : " + this.getRadius() + "\nSpeed on the x axis : " + this.xSpeed + "\nSpeed on the y axis : " + this.ySpeed;
     }
