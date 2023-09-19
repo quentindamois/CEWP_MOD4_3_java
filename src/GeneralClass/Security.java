@@ -113,16 +113,21 @@ public class Security {
     /**
      * This is the display tring method.
      * This static methor take a set of string and return a String containing every entity in the set separated by ", ".
+     * @param displayedSet : This set of string contain the name that will be displayed.
      * */
     public static String displayStringSet(HashSet<String> displayedSet) {
         String StringNameSet = "";
         for(String firstname : displayedSet) {
             StringNameSet += firstname + ", ";
         }
-        System.out.println(StringNameSet);
         StringBuilder res = new StringBuilder(StringNameSet);
-        System.out.println(StringNameSet);
-        return res.substring(0, res.length() - 2);
+        String valReturned;
+        try {
+            valReturned = res.substring(0, res.length() - 2);
+        } catch (StringIndexOutOfBoundsException mistake) {
+            valReturned = "";
+        }
+        return valReturned;
     }
     }
 
